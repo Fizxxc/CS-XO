@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/$1.js" },
+    { "src": "/XO", "dest": "/admin.html" },
+    { "src": "/login", "dest": "/login.html" },
+    { "src": "/", "dest": "/index.html" }
+  ]
+}

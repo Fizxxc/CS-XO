@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Admin Panel | XO MEDIA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-6 rounded-xl shadow-md w-full max-w-md">
+        <h1 class="text-2xl font-bold text-purple-600 mb-4">Inbox User</h1>
+        <p id="last-message" class="mb-4 text-gray-700">Menunggu pesan user...</p>
+        <form id="reply-form" class="flex gap-2">
+            <input id="reply" type="text" placeholder="Balas pesan..." class="flex-1 border p-2 rounded" required />
+            <button class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">Kirim</button>
+        </form>
+        <audio id="notif" src="https://www.myinstants.com/media/sounds/ting-sound.mp3"></audio>
+    </div>
+    <script src="/js/admin.js"></script>
+</body>
+</html>
