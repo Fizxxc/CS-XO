@@ -1,23 +1,27 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <title>Login Admin | XO MEDIA</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Admin | XO Media</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+<body class="bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center min-h-screen font-sans">
+  <audio id="failSound" src="/notif/fail.mp3"></audio>
 
-<body class="bg-purple-200 min-h-screen flex items-center justify-center">
-    <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-sm">
-        <h2 class="text-2xl font-bold text-purple-600 mb-6 text-center">Login Admin</h2>
-        <form id="login-form" class="space-y-4">
-            <input type="text" id="username" placeholder="Username" class="w-full border p-2 rounded" required />
-            <input type="password" id="password" placeholder="Password" class="w-full border p-2 rounded" required />
-            <button type="submit"
-                class="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700">Login</button>
-        </form>
-    </div>
-    <script src="/js/log.js"></script>
+  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md animate__animated animate__fadeIn">
+    <h1 class="text-2xl font-bold text-center text-purple-700 mb-6">Login Admin</h1>
+    <form id="loginForm" class="space-y-4">
+      <input type="text" id="username" placeholder="Username"
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" required />
+      <input type="password" id="password" placeholder="Password"
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" required />
+      <button type="submit"
+        class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition duration-300">Masuk</button>
+    </form>
+  </div>
+
+  <script src="/js/log.js"></script>
 </body>
 </html>

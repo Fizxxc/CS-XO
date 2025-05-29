@@ -1,20 +1,37 @@
-    document.getElementById('login-form').addEventListener('submit', async (e) => {
+const loginForm = document.getElementById('loginForm');
+    const failSound = document.getElementById('failSound');
+
+    loginForm.addEventListener('submit', function (e) {
       e.preventDefault();
+
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
 
-      const res = await fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
-      });
+      // Ganti dengan login valid kamu
+      const validUsername = "XOFizzx";
+      const validPassword = "XoFizzx132";
 
-      const data = await res.json();
-
-      if (data.success) {
-        localStorage.setItem('admin-auth', 'yes');
-        window.location.href = '/XO';
+      if (username === validUsername && password === validPassword) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Berhasil!',
+          text: 'Login berhasil, mengalihkan...',
+          showConfirmButton: false,
+          timer: 1500,
+          background: '#e6fffa',
+          color: '#0f5132'
+        }).then(() => {
+          window.location.href = '/XO';
+        });
       } else {
-        Swal.fire('Gagal', 'Username atau password salah', 'error');
+        failSound.play();
+        Swal.fire({
+          icon: 'error',
+          title: '<strong><i class="fa fa-ban"></i> Maaf !!</strong>',
+          text: 'Username atau Password Salah',
+          background: '#fddede',
+          color: '#842029',
+          confirmButtonColor: '#d33'
+        });
       }
     });
