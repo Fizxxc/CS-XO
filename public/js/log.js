@@ -13,7 +13,7 @@
 
       if (data.success) {
         localStorage.setItem('admin-auth', 'yes');
-        window.location.href = '/admin';
+        window.location.href = '/XO';
       } else {
         Swal.fire('Gagal', 'Username atau password salah', 'error');
       }
