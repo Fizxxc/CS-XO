@@ -1,31 +1,41 @@
-if (localStorage.getItem('admin-auth') !== 'yes') {
-    window.location.href = '/login';
-}
-
-const lastMsg = document.getElementById('last-message');
-const replyForm = document.getElementById('reply-form');
-const replyInput = document.getElementById('reply');
-const notifSound = document.getElementById('notif');
-let lastUserMessage = '';
-
-setInterval(async () => {
-    const res = await fetch('/api/inbox');
-    const data = await res.json();
-    if (data.message && data.message !== lastUserMessage) {
-        lastMsg.textContent = `User: ${data.message}`;
-        notifSound.play();
-        lastUserMessage = data.message;
+    if (localStorage.getItem('admin-auth') !== 'yes') {
+      window.location.href = '/login';
     }
-}, 3000);
 
-replyForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const replyText = replyInput.value;
-    await fetch('/api/reply', {
+    const chat = document.getElementById('chat');
+    const replyInput = document.getElementById('reply');
+    const replyForm = document.getElementById('reply-form');
+    const notif = document.getElementById('notif').play();
+
+
+    let lastMsg = '';
+
+    function addMessage(text, sender) {
+      const msg = document.createElement('div');
+      msg.className = sender === 'user' ? 'text-left' : 'text-right text-purple-600';
+      msg.innerText = text;
+      chat.appendChild(msg);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    setInterval(async () => {
+      const res = await fetch('/api/inbox');
+      const data = await res.json();
+      if (data.message && data.message !== lastMsg) {
+        addMessage(`${data.user}: ${data.message}`, 'user');
+        notif.play();
+        lastMsg = data.message;
+      }
+    }, 3000);
+
+    replyForm.onsubmit = async (e) => {
+      e.preventDefault();
+      const replyText = replyInput.value;
+      addMessage(`Admin: ${replyText}`, 'admin');
+      await fetch('/api/reply', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ reply: replyText })
-    });
-    Swal.fire('Terkirim!', 'Balasan sudah dikirim.', 'success');
-    replyInput.value = '';
-});
+      });
+      replyInput.value = '';
+    };
